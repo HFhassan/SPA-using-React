@@ -15,6 +15,7 @@ class Dishdetail extends Component {
                             <CardText>{dish.description}</CardText>
                         </CardBody>
                     </Card>
+                    
                 </div>
             )
         }
@@ -48,7 +49,7 @@ class Dishdetail extends Component {
         })
         return(
             <div className='col-12 col-md-5 m-1'>
-                <h4> Comments </h4>
+                
                 <ul className='list-unstyled'>
                     {comment_}
                 </ul>
@@ -67,16 +68,21 @@ class Dishdetail extends Component {
 
         return(
             <div className="container">
+            
             <div className="row">
-                <div className="col-12 col-md-5 m-1">
-                   <Card> {this.renderDish(dish)}</Card>
-                </div>
-
-                <div className="col-12 col-md-5 m-1">
-                    <h4>Comments</h4>
-                    {this.renderComments(dish.comments)}
-                </div>
-            </div>             
+            <div className="col-6">
+                   <Card> {this.renderDish(dish)}
+                   </Card>
+                   </div>
+                   
+                   <div className="col-6">
+                   <Card>
+                       <h4>Comments</h4>
+                        {this.renderComments(dish.comments)}
+                    
+                    </Card>
+                    </div>
+                    </div>
             </div>
         )
     }
