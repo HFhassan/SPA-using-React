@@ -6,21 +6,18 @@ function About(props) {
 
     const leaders = props.leaders.map((leader) => {
         return (
-
-            <Media>
-            <Media >
-              <Media src={leader.image} alt="leader.name" />
-            </Media>
-            <Media body>
-              <Media heading>
-                {leader.name}
-              </Media>
-              {leader.designation}
-              <br />
-              <br />
-              {leader.description}
-            </Media>
-          </Media>
+            <div className="m-5">
+            <Media tag="li">
+			  <Media left>
+	            <Media object  src={leader.image}/>
+			  </Media>
+			  <Media body className="ml-5">
+                <Media heading>{leader.name}</Media>
+                <p>{leader.designation}</p>
+				<p>{leader.description}</p>
+			  </Media>
+			</Media>
+		</div>
         );
     });
 
