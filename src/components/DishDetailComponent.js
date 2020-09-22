@@ -22,7 +22,7 @@ const RenderDish = ({dish}) => {
     );
 }
 
-const RenderComments = ({comments}) => {
+const RenderComments = ({comments, addComment, dishId}) => {
   if (comments == null)
     return (<div></div>);
 
@@ -71,8 +71,13 @@ const DishDetail = (props) => {
         <div className="col-12 col-md-5 m-1">
           <RenderDish dish={dish} />
         </div>
-        <RenderComments comments={props.comments} />
+        <RenderComments comments={props.comments}
+        addComment={props.addComment}
+        dishId={props.dish.id}
+      />
+
       </div>
+
     </div>);
 }
 
@@ -98,13 +103,13 @@ class CommentForm extends Component{
   }
 
   handleComment(values){
-    this.toggleModal();
-    let state = JSON.stringify(values)
-    let msj = 'Current State is: ' + state
-    alert(msj);
+    
+    this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
   }
 
   render(){
+    
+
     return (
       <div className="row">
         <Button className='btn-outline-dark' onClick={this.toggleModal}> <span className='fa fa-pencil'/> Submit Comment</Button>
