@@ -7,9 +7,10 @@ import DishDetail from './DishDetailComponent';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
 import { postComment, fetchDishes, fetchComments, fetchPromos } from '../redux/ActionCreators';
-import { Switch, Route, Redirect, withRouter} from 'react-router-dom';
+import { Switch, Route, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { actions } from 'react-redux-form';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const mapDispatchToProps = dispatch => ({
   
@@ -76,7 +77,9 @@ class Main extends Component {
       <div>
 
         <Header />
-        <Switch>
+        <TransitionGroup>
+            <CSSTransition key={this.props.location} classNames="page" timeout={300}>
+        <Switch location={this.props.location}>
           <Route path ="/home" component= {HomePage} />
           <Route exact path ="/menu" component= {()=> <Menu dishes={this.props.dishes} />} /> 
           <Route exact path='/contactus' component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} />
@@ -85,8 +88,8 @@ class Main extends Component {
           <Redirect to ="/home" />
         </Switch>
 
-        
-        
+        </CSSTransition>
+        </TransitionGroup>
         <Footer />
       </div>
     );
