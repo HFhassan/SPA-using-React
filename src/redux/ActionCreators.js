@@ -5,6 +5,30 @@ export const addComment = (comment) => ({
     payload: comment
 });
 
+export const addFeedback = (feedback) => ({
+  type: ActionTypes.ADD_FEEDBACK,
+  payload: feedback
+})
+
+export const feedbackForm = (firstName, lastName, tel, email, feedbackMsg) => {
+  const newFeedback = {
+    firstName: firstName,
+    lastName: lastName,
+    tel: tel,
+    email: email,
+    feedbackMsg : feedbackMsg
+  }
+  return fetch(baseUrl + 'feedback', {
+    method: "POST",
+    body: JSON.stringify(newFeedback),
+    headers: {
+      "Content-Type": "application/json"
+    },
+    credentials: "same-origin"
+})
+
+}
+
 export const postComment = (dishId, rating, author, comment) => (dispatch) => {
 
     const newComment = {

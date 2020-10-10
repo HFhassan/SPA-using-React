@@ -2,24 +2,33 @@ import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform } from 'react-animation-components';
 
 
 function About(props) {
 
-    const leaders = props.leaders.map((leader) => {
+    const leaders = props.leaders.leaders.map((leader) => {
         return (
+            <FadeTransform
+    in
+    transformProps={{
+        exitTransform: 'scale(0.5) translateY(-50%)'
+    }}>
+
             <div className="m-5">
-            <Media tag="li">
-			  <Media left>
-	            <Media object  src={baseUrl + leader.image}/>
-			  </Media>
-			  <Media body className="ml-5">
-                <Media heading>{leader.name}</Media>
-                <p>{leader.designation}</p>
-				<p>{leader.description}</p>
-			  </Media>
-			</Media>
-		</div>
+                <Media tag="li">
+                    <Media left>
+                        <Media object  src={baseUrl + leader.image}/>
+                    </Media>
+                    <Media body className="ml-5">
+                        <Media heading>{leader.name}</Media>
+                        <p>{leader.designation}</p>
+                        <p>{leader.description}</p>
+                    </Media>
+                </Media>
+            </div>
+        </FadeTransform>
+
         );
     });
 

@@ -6,7 +6,7 @@ import Footer from './FooterComponent';
 import DishDetail from './DishDetailComponent';
 import Contact from './ContactComponent';
 import About from './AboutComponent';
-import { postComment, fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
+import { postComment, fetchDishes, fetchComments, fetchPromos, fetchLeaders, feedbackForm } from '../redux/ActionCreators';
 import { Switch, Route, Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { actions } from 'react-redux-form';
@@ -19,14 +19,16 @@ const mapDispatchToProps = dispatch => ({
   resetFeedbackForm: () => { dispatch(actions.reset('feedback'))},
   fetchComments: () => dispatch(fetchComments()),
   fetchPromos: () => dispatch(fetchPromos()),
-  fetchLeaders: () => dispatch(fetchLeaders())
+  fetchLeaders: () => dispatch(fetchLeaders()),
+  feedbackForm:  (firstName, lastName, tel, email, feedbackMsg) => dispatch(feedbackForm(firstName, lastName, tel, email, feedbackMsg))
 });
 const mapStateToProps = state => {
   return {
     dishes: state.dishes,
     comments: state.comments,
     promotions: state.promotions,
-    leaders: state.leaders
+    leaders: state.leaders,
+
   }
 }
 
